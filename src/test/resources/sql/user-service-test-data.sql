@@ -33,3 +33,5 @@ insert into users (
              'PENDING',
              0
          );
+
+ALTER TABLE users ALTER COLUMN id RESTART WITH 3;
