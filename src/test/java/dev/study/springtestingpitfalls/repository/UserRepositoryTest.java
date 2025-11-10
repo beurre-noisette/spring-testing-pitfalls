@@ -1,8 +1,6 @@
-package dev.study.springtestingpitfalls;
+package dev.study.springtestingpitfalls.repository;
 
 import dev.study.springtestingpitfalls.model.UserStatus;
-import dev.study.springtestingpitfalls.repository.UserEntity;
-import dev.study.springtestingpitfalls.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
