@@ -1,4 +1,4 @@
-package dev.study.springtestingpitfalls.user.controller;
+package dev.study.springtestingpitfalls.post.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.study.springtestingpitfalls.post.domain.PostUpdate;

@@ -1,4 +1,4 @@
-package dev.study.springtestingpitfalls.user.controller;
+package dev.study.springtestingpitfalls.common.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

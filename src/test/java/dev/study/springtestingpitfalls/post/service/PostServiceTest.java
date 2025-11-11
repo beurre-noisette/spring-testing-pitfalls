@@ -1,6 +1,5 @@
-package dev.study.springtestingpitfalls.user.service;
+package dev.study.springtestingpitfalls.post.service;
 
-import dev.study.springtestingpitfalls.post.service.PostService;
 import dev.study.springtestingpitfalls.post.domain.PostCreate;
 import dev.study.springtestingpitfalls.post.domain.PostUpdate;
 import dev.study.springtestingpitfalls.post.infrastructure.PostEntity;
