@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.study.springtestingpitfalls.user.domain.UserStatus;
 import dev.study.springtestingpitfalls.user.domain.UserUpdate;
 import dev.study.springtestingpitfalls.user.infrastructure.UserEntity;
-import dev.study.springtestingpitfalls.user.infrastructure.UserRepository;
+import dev.study.springtestingpitfalls.user.infrastructure.UserJpaRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -34,7 +34,7 @@ public class UserControllerTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserJpaRepository userJpaRepository;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -68,7 +68,7 @@ public class UserControllerTest {
                         .queryParam("certificationCode", "aaaaaaa-aaaa-aaaa-aaaaaaaaab"))
                 .andExpect(status().isFound());
 
-        UserEntity result = userRepository.findById(2L).get();
+        UserEntity result = userJpaRepository.findById(2L).get();
         assertThat(result.getStatus()).isEqualTo(UserStatus.ACTIVE);
     }
 

@@ -4,7 +4,7 @@ import dev.study.springtestingpitfalls.common.domain.exception.ResourceNotFoundE
 import dev.study.springtestingpitfalls.post.domain.PostCreate;
 import dev.study.springtestingpitfalls.post.domain.PostUpdate;
 import dev.study.springtestingpitfalls.post.infrastructure.PostEntity;
-import dev.study.springtestingpitfalls.post.infrastructure.PostRepository;
+import dev.study.springtestingpitfalls.post.service.port.PostRepository;
 import dev.study.springtestingpitfalls.user.infrastructure.UserEntity;
 import dev.study.springtestingpitfalls.user.service.UserService;
 import lombok.RequiredArgsConstructor;

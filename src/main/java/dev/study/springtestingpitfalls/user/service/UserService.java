@@ -7,7 +7,7 @@ import dev.study.springtestingpitfalls.user.domain.UserStatus;
 import dev.study.springtestingpitfalls.user.domain.UserCreate;
 import dev.study.springtestingpitfalls.user.domain.UserUpdate;
 import dev.study.springtestingpitfalls.user.infrastructure.UserEntity;
-import dev.study.springtestingpitfalls.user.infrastructure.UserRepository;
+import dev.study.springtestingpitfalls.user.service.port.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
