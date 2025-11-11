@@ -1,26 +1,54 @@
 package dev.study.springtestingpitfalls.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import dev.study.springtestingpitfalls.model.dto.PostCreateDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.context.jdbc.Sql.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
+@SqlGroup({
+        @Sql(value = "/sql/post-create-test-data.sql", executionPhase = ExecutionPhase.BEFORE_TEST_METHOD),
+        @Sql(value = "/sql/delete-all-data.sql", executionPhase = ExecutionPhase.AFTER_TEST_METHOD)
+})
 public class PostCreateTest {
 
     @Autowired
     private MockMvc mockMvc;
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
-    void 헬스_체크_응답이_200으로_내려온다() throws Exception {
-        mockMvc.perform(get("/health_check.html"))
-               .andExpect(status().isOk());
+    void 사용자는_게시물을_작성할_수_있다() throws Exception {
+        // given
+        PostCreateDto postCreateDto = PostCreateDto.builder()
+                .writerId(1)
+                .content("helloworld")
+                .build();
+
+        // when
+        // then
+        mockMvc.perform(
+                        post("/api/posts")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(postCreateDto)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id").isNumber())
+                .andExpect(jsonPath("$.content").value("helloworld"))
+                .andExpect(jsonPath("$.writer.id").isNumber())
+                .andExpect(jsonPath("$.writer.email").value("kok202@naver.com"))
+                .andExpect(jsonPath("$.writer.nickname").value("kok202"));
     }
 }
